@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海湾石油珠泾路站 - 团购优惠活动</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1a56db',
+                        secondary: '#3b82f6',
+                        accent: '#f97316',
+                        dark: '#0f172a',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-dark">
+    <!-- 顶部导航 -->
+    <header class="bg-primary text-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-tint text-2xl"></i>
+                <h1 class="text-xl font-bold">海湾石油珠泾路站</h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#home" class="hover:text-secondary transition-colors">首页</a></li>
+                    <li><a href="#offers" class="hover:text-secondary transition-colors">优惠活动</a></li>
+                    <li><a href="#about" class="hover:text-secondary transition-colors">关于我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 活动横幅 -->
+    <section id="home" class="relative bg-secondary text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-[clamp(1.8rem,4vw,3rem)] font-bold mb-4 text-shadow">团购优惠活动</h2>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] mb-8 max-w-2xl mx-auto">
+                邀请好友一起加油，享受超值折扣！95号和92号汽油分别加满400元打93折、300元打95折、200元打96折。
+            </p>
+            <a href="#offers" class="bg-accent hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 inline-block">
+                立即参与 <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- 汽油类型选择 -->
+    <section id="offers" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">选择汽油类型</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- 92号汽油 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-primary text-white p-6">
+                        <h3 class="text-2xl font-bold">92号汽油</h3>
+                        <p class="text-sm opacity-90">经济实惠，动力强劲</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-3xl font-bold text-primary" id="price92">¥7.23</span>
+                            <span class="text-gray-500">/ 升</span>
+                        </div>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>加满400元</span>
+                                <span class="font-bold text-accent">93折</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>加满300元</span>
+                                <span class="font-bold text-accent">95折</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>加满200元</span>
+                                <span class="font-bold text-accent">96折</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300" onclick="selectGasoline('92')">
+                            选择92号
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 95号汽油 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
+                    <div class="bg-secondary text-white p-6">
+                        <h3 class="text-2xl font-bold">95号汽油</h3>
+                        <p class="text-sm opacity-90">高品质，更清洁</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-3xl font-bold text-secondary" id="price95">¥7.69</span>
+                            <span class="text-gray-500">/ 升</span>
+                        </div>
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>加满400元</span>
+                                <span class="font-bold text-accent">93折</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>加满300元</span>
+                                <span class="font-bold text-accent">95折</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span>加满200元</span>
+                                <span class="font-bold text-accent">96折</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-secondary hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300" onclick="selectGasoline('95')">
+                            选择95号
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 加油金额选择 -->
+    <section id="amount-selection" class="py-16 bg-white hidden">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">选择加油金额</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-xl p-6 text-center card-hover cursor-pointer" onclick="selectAmount(200)">
+                    <div class="text-4xl font-bold text-primary mb-2">¥200</div>
+                    <div class="text-accent font-bold">96折</div>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6 text-center card-hover cursor-pointer" onclick="selectAmount(300)">
+                    <div class="text-4xl font-bold text-primary mb-2">¥300</div>
+                    <div class="text-accent font-bold">95折</div>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6 text-center card-hover cursor-pointer" onclick="selectAmount(400)">
+                    <div class="text-4xl font-bold text-primary mb-2">¥400</div>
+                    <div class="text-accent font-bold">93折</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 用户信息表单 -->
+    <section class="py-16 bg-white" id="form-section">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">填写信息参与团购</h2>
+            <form id="user-form" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-medium mb-2">姓名</label>
+                        <input type="text" id="name" name="name" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">手机号码</label>
+                        <input type="tel" id="phone" name="phone" required pattern="^1[3-9]\d{9}$"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="license-plate" class="block text-gray-700 font-medium mb-2">车牌号</label>
+                        <input type="text" id="license-plate" name="license-plate" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="gas-station" class="block text-gray-700 font-medium mb-2">选择加油站</label>
+                        <select id="gas-station" name="gas-station" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                            <option value="">请选择加油站</option>
+                            <option value="station1">海湾石油珠泾路站</option>
+                            <option value="station2">海湾石油江苏南京秦淮店</option>
+                            <option value="station3">海湾石油江苏无锡滨湖店</option>
+                            <option value="station4">海湾石油江苏常州新北店</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="gasoline-type" class="block text-gray-700 font-medium mb-2">汽油类型</label>
+                        <input type="text" id="gasoline-type" name="gasoline-type" readonly
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="amount" class="block text-gray-700 font-medium mb-2">加油金额</label>
+                        <input type="text" id="amount" name="amount" readonly
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="bg-primary hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full transition-all duration-300 inline-block">
+                        提交参与 <i class="fa fa-check ml-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- 成团进度 -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">成团进度</h2>
+            <div class="bg-white p-8 rounded-xl shadow-lg">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">当前进度</h3>
+                    <span class="text-2xl font-bold text-primary">1/3</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4 mb-8">
+                    <div class="bg-primary h-4 rounded-full" style="width: 33%"></div>
+                </div>
+                <div class="text-center">
+                    <button id="share-btn" class="bg-accent hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 inline-block">
+                        分享给好友 <i class="fa fa-share-alt ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核销说明 -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4 max-w-4xl">
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-center mb-12">核销说明</h2>
+            <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                        <span>成团后，您将收到一条包含核销码的短信</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                        <span>请在一周内前往选定的加油站出示核销码</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                        <span>加油站工作人员验证后，您即可享受相应折扣</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle text-primary mt-1 mr-3"></i>
+                        <span>如有任何问题，请联系客服：0512-62886309</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">海湾石油珠泾路站</h3>
+                    <p class="text-gray-400">为您提供高品质的燃油和优质的服务</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">联系我们</h3>
+                    <p class="text-gray-400 mb-2"><i class="fa fa-phone mr-2"></i> 0512-62886309</p>
+                    <p class="text-gray-400"><i class="fa fa-envelope mr-2"></i> service@gulfoil.com</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">关注我们</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-weixin text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-weibo text-2xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa fa-qq text-2xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500">
+                <p>© 2023 海湾石油珠泾路站 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 分享弹窗 -->
+    <div id="share-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl shadow-2xl p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">分享给好友</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-700"><i class="fa fa-times text-xl"></i></button>
+            </div>
+            <div class="flex flex-col items-center space-y-6">
+                <div id="qrcode-container" class="w-48 h-48 bg-white p-2 rounded-lg shadow-md"></div>
+                <p class="text-center text-gray-600 mb-2">请好友扫描二维码加入团购</p>
+                <div class="w-full">
+                    <div class="relative">
+                        <input type="text" id="share-link" value="" readonly
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <button id="copy-btn" class="absolute right-2 top-2 bg-primary text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">
+                            复制链接
+                        </button>
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <button class="flex flex-col items-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-weixin text-2xl mb-1"></i>
+                        <span class="text-sm">微信</span>
+                    </button>
+                    <button class="flex flex-col items-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-weibo text-2xl mb-1"></i>
+                        <span class="text-sm">微博</span>
+                    </button>
+                    <button class="flex flex-col items-center text-gray-600 hover:text-primary transition-colors">
+                        <i class="fa fa-qq text-2xl mb-1"></i>
+                        <span class="text-sm">QQ</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 选择汽油类型
+        function selectGasoline(type) {
+            document.getElementById('gasoline-type').value = type + '号汽油';
+            // 显示金额选择区域
+            document.getElementById('amount-selection').classList.remove('hidden');
+            // 滚动到金额选择区域
+            document.getElementById('amount-selection').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 选择加油金额
+        function selectAmount(amount) {
+            document.getElementById('amount').value = '¥' + amount;
+            // 滚动到表单区域
+            document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 生成二维码
+        function generateQRCode() {
+            // 获取当前页面URL作为二维码内容
+            const currentUrl = window.location.href;
+            document.getElementById('share-link').value = currentUrl;
+
+            // 清空之前的二维码
+            const qrcodeContainer = document.getElementById('qrcode-container');
+            qrcodeContainer.innerHTML = '';
+
+            // 创建新的二维码 - 修复了这里的问题，使用正确的qrcodeGenerator
+            try {
+                // 尝试使用qrcodeGenerator
+                let qrcode;
+                if (typeof qrcodeGenerator !== 'undefined') {
+                    qrcode = qrcodeGenerator(0, 'L');
+                } else if (typeof qrcode !== 'undefined') {
+                    // 兼容旧版本
+                    qrcode = qrcode(0, 'L');
+                } else {
+                    throw new Error('二维码生成库未加载');
+                }
+                qrcode.addData(currentUrl);
+                qrcode.make();
+                const qrImage = qrcode.createImgTag(4);
+                qrcodeContainer.innerHTML = qrImage;
+            } catch (error) {
+                console.error('生成二维码失败:', error);
+                qrcodeContainer.innerHTML = '<span class="text-red-500">生成二维码失败，请重试</span>';
+            }
+        }
+
+        // 复制链接到剪贴板
+        function copyToClipboard() {
+            const linkInput = document.getElementById('share-link');
+            linkInput.select();
+            document.execCommand('copy');
+
+            // 显示复制成功提示
+            const copyBtn = document.getElementById('copy-btn');
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = '复制成功!';
+            setTimeout(() => {
+                copyBtn.textContent = originalText;
+            }, 2000);
+        }
+
+        // 分享弹窗
+        document.getElementById('share-btn').addEventListener('click', function() {
+            generateQRCode();
+            document.getElementById('share-modal').classList.remove('hidden');
+        });
+
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('share-modal').classList.add('hidden');
+        });
+
+        // 复制按钮点击事件
+        document.getElementById('copy-btn').addEventListener('click', copyToClipboard);
+
+        // 点击弹窗外部关闭
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('share-modal');
+            if (event.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+
+        // 表单提交
+        document.getElementById('user-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('提交成功！请等待好友加入团购。');
+        });
+
+        // 动态获取油价数据
+        function updateOilPrices() {
+            // 这里是获取江苏地区实时油价的API接口
+            // 实际应用中，您需要替换为真实的API调用
+            // 以下是设置的固定价格
+            document.getElementById('price92').textContent = '¥7.23';
+            document.getElementById('price95').textContent = '¥7.69';
+            console.log('油价已更新为最新江苏地区国标价格');
+        }
+
+        // 页面加载完成后更新油价
+        window.addEventListener('load', function() {
+            updateOilPrices();
+        });
+    </script>
+</body>
+</html>
